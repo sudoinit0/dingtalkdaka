@@ -8,7 +8,7 @@
 五、AirCV</br>
 </br>
 运行方法：</br>
-python dingtalk.py  </br>
+python dingtalkdaka.py  </br>
 </br>
 
 里面的各种jpg图片需要根据自己的手机分辨率进行适配截图。目前还没有做到缩放识别</br>
