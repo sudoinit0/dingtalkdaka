@@ -29,7 +29,7 @@ def getpos():
 	piclist=['5.jpg','4.jpg','3.jpg','2.jpg','1.jpg','success.jpg','bothok.jpg','black.jpg']
 	i=0
 	for pic in piclist :
-		i=i+1
+		i+=1
 		imsrc = ac.imread('state.png')
 		imobj = ac.imread(pic)
 		pos = ac.find_template(imsrc, imobj)
@@ -119,7 +119,9 @@ checktime()
 runsleep()
 openscreen()
 
-while True:
+trytime=0
+while trytime<20:
+	trytime+=1
 	pic=getpos()
 	if pic=='1.jpg' :
 		print u'当前为待机界面'
@@ -188,5 +190,5 @@ while True:
 		print u'其他'
 		openscreen()
 		backmain()
-	
+print u"打卡失败"
 	
