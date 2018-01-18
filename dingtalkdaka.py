@@ -2,6 +2,7 @@
 # Author:sudoinit0
 import os
 import time
+from datetime import datetime
 import aircv as ac
 from PIL import Image
 import random
@@ -97,6 +98,11 @@ def checkplace():
 
 def checktime():
 	print time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+	dayOfWeek = datetime.now().weekday()
+	print u"今天星期",(dayOfWeek+1)
+	if dayOfWeek >= 5:
+		print u"周末不打卡"
+		quit()
 	dakaflag=-1
 	hour=int(time.strftime("%H", time.localtime()))
 	print u"当前小时为",hour
