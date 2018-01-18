@@ -98,9 +98,9 @@ def checkplace():
 
 def checktime():
 	print time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-	dayOfWeek = datetime.now().weekday()
-	print u"今天星期",(dayOfWeek+1)
-	if dayOfWeek >= 5:
+	dayOfWeek = datetime.now().weekday()+1
+	print u"今天星期",dayOfWeek
+	if dayOfWeek >= 6:
 		print u"周末不打卡"
 		quit()
 	dakaflag=-1
