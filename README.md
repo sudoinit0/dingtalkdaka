@@ -14,3 +14,8 @@ python dingtalkdaka.py  </br>
 里面的各种jpg图片需要根据自己的手机分辨率进行适配截图。目前还没有做到缩放识别</br>
 
 运行过程可以看demo.mp4
+</br></br>
+更新记录：</br>
+2018-02-05</br>
+新增节假日和换休日判断，根据specday.txt。</br>
+specday.txt分为两个字段，加号表示当天要打卡，减号表示当天不要打卡。</br>
