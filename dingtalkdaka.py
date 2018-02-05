@@ -27,7 +27,7 @@ def openscreen():
 def getpos():
 	os.system('adb shell screencap -p /sdcard/1.png')
 	os.system('adb pull /sdcard/1.png state.png')
-	piclist=['5.jpg','4.jpg','3.jpg','2.jpg','1.jpg','success.jpg','bothok.jpg','black.jpg']
+	piclist=['5.jpg','4.jpg','3.jpg','2.jpg','1.jpg','success.jpg','bothok.jpg','black.jpg','error.jpg']
 	i=0
 	for pic in piclist :
 		i+=1
@@ -97,12 +97,6 @@ def checkplace():
 
 
 def checktime():
-	print time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-	dayOfWeek = datetime.now().weekday()+1
-	print u"今天星期",dayOfWeek
-	if dayOfWeek >= 6:
-		print u"周末不打卡"
-		quit()
 	dakaflag=-1
 	hour=int(time.strftime("%H", time.localtime()))
 	print u"当前小时为",hour
@@ -119,8 +113,37 @@ def checktime():
 	return dakaflag
 
 
+def checkspec():
+	i=0
+	today=time.strftime("%Y-%m-%d", time.localtime())
+	specfile = open('specday.txt', 'r')
+	filelines = len(specfile.readlines())
+	specfile.close()
+	print u"文件有",filelines,"行"
+	specfile = open('specday.txt', 'r')
+	for line in specfile:
+		i+=1
+		lines=line.split(',')
+		if lines[1].strip()==today :
+			if lines[0].strip() == '-' :
+				print u"今天不要打卡"
+				quit()
+			else:
+				print u"今天要打卡"
+			break
+	specfile.close()
+	if i>=filelines	:
+		dayOfWeek = datetime.now().weekday()+1
+		print u"今天星期",dayOfWeek
+		if dayOfWeek >= 6:
+			print u"周末不打卡"
+			quit()
+
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
+print time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+checkspec()
 checktime()
 runsleep()
 openscreen()
@@ -192,6 +215,10 @@ while trytime<20:
 		time.sleep(5)
 		os.system('adb shell input keyevent 4')
 		quit()
+	elif pic=='error.jpg':
+		print u'错误页面'
+		posandpress('error.jpg')
+		time.sleep(5)
 	else:
 		print u'其他'
 		openscreen()
